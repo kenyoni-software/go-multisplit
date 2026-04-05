@@ -1,0 +1,92 @@
+# Last updated at golanci-lint v2.11.3
+version: "2"
+formatters:
+  enable:
+    - gofumpt
+    - gci
+  settings:
+    gci:
+      sections:
+        - standard
+        - default
+        - localmodule
+      custom-order: true
+linters:
+  default: all
+  disable:
+    # duplicate of gocyclo
+    - cyclop
+    # not required, covered by archcheck
+    - depguard
+    # too many cases where we omit fields as we want default values
+    - exhaustruct
+    # inits are required to setup global states
+    - gochecknoinits
+    # covered by revive
+    - gocognit
+    # covered by revive
+    - gocyclo
+    # naked returns are not allowed, they make the code less readable and harder to maintain
+    - nakedret
+    # named returns are better self documenting
+    - nonamedreturns
+    # outdated use wsl_v5
+    - wsl
+  settings:
+    funlen:
+      lines: 80
+    lll:
+      line-length: 160
+    revive:
+      enable-all-rules: true
+      rules:
+        - name: add-constant
+          exclude: [""]
+          arguments:
+            - allow-strs: '""," "'
+              allow-ints: "0,1"
+              allow-floats: "0.0,1.0"
+        - name: cognitive-complexity
+          arguments: [15]
+        - name: cyclomatic
+          arguments: [15]
+        - name: line-length-limit
+          arguments: [160]
+        # everything starting with underscore is considered as intentionally unused, but may have a name to improve readability
+        - name: unused-parameter
+          arguments:
+            - allow-regex: "^_.*"
+    wsl_v5:
+      default: all
+      # most is disabled because the developer can be trusted enough to group the code properly
+      disable:
+        # while generally good, it adds too often lines, where compact code is preferred
+        - after-block
+        # prefer compact code
+        - append
+        # prefer compact code
+        - assign
+        # prefer compact code
+        - assign-expr
+        # prefer compact code
+        - branch
+        # prefer ungrouped declarations
+        - decl
+        # prefer compact code
+        - expr
+        # prefer compact code
+        - for
+        # prefer compact code
+        - if
+        # prefer compact code
+        - inc-dec
+        # prefer compact code
+        - range
+        # prefer compact code
+        - return
+        # prefer compact code
+        - send
+        # prefer compact code
+        - switch
+        # prefer compact code
+        - type-switch

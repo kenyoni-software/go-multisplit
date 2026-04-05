@@ -1,0 +1,20 @@
+{
+	"name": "go-multisplit",
+	"image": "mcr.microsoft.com/devcontainers/go:1.25",
+	"customizations": {
+		"vscode": {
+			"settings": {},
+			"extensions": [
+				"golang.go",
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	},
+	"remoteUser": "vscode",
+	"containerUser": "vscode",
+	"postCreateCommand": {
+		"install packages": "go mod download",
+		"install golangci-lint": "curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/HEAD/install.sh | sh -s -- -b $(go env GOPATH)/bin",
+		"install os packages": "sudo apt update && sudo apt install -y graphviz"
+	}
+}

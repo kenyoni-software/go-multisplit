@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "github.vscode-github-actions",
+        "lacroixdavid1.vscode-format-context-menu",
+        "spmeesseman.vscode-taskexplorer",
+        "tyriar.sort-lines",
+        "yzhang.markdown-all-in-one"
+    ]
+}
