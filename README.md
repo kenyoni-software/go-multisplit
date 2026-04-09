@@ -1,5 +1,11 @@
 # Go MultiSplit
 
+![maintained](https://img.shields.io/badge/maintained-yes-brightgreen.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/kenyoni-software/go-multisplit/blob/main/LICENSE.md)
+![Programming Language](https://img.shields.io/badge/language-Go-orange.svg)
+
+[![Go report card](https://goreportcard.com/badge/github.com/kenyoni-software/go-multisplit)](https://goreportcard.com/report/github.com/kenyoni-software/go-multisplit)
+
 Go MultiSplit is a `go/analysis`-based linter that detects when multiple identifiers are declared, assigned or listed together (e.g. `var a, b int` or `a, b := 1, 2`). It recommends splitting these into separate declarations or assignments to improve clarity and reduce ambiguity.
 
 ## Options
