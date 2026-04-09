@@ -1,6 +1,6 @@
 # Go MultiSplit
 
-Go MultiSplit is a `go/analysis`-based linter that detects when multiple identifiers are declared, assigned or listed together (e.g. `var a, b int` or `a, b := 1, 2`). It recommends splitting these into separate declarations or assignments to improve clarity, prevent subtle bugs and make code easier to maintain.
+Go MultiSplit is a `go/analysis`-based linter that detects when multiple identifiers are declared, assigned or listed together (e.g. `var a, b int` or `a, b := 1, 2`). It recommends splitting these into separate declarations or assignments to improve clarity and reduce ambiguity.
 
 ## Options
 
