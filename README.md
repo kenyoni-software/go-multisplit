@@ -294,7 +294,6 @@ linters-settings:
       - var-decl-func
       - var-decl-pkg
 
-
     # If enabled rewrite const declarations with multiple identifiers inside functions into a const block.
     # Default: false
     constDeclFuncToBlock: true
