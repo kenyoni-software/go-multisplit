@@ -60,14 +60,18 @@ func (s *Settings) toMultiSplitSettings() (multisplit.Settings, error) {
 			}
 		}
 	}
-	if s.VarDeclPkgToBlock != nil {
-		cfg.VarDeclPkgToBlock = *s.VarDeclPkgToBlock
+
+	if s.ConstDeclFuncToBlock != nil {
+		cfg.ConstDeclFuncToBlock = *s.ConstDeclFuncToBlock
+	}
+	if s.ConstDeclPkgToBlock != nil {
+		cfg.ConstDeclPkgToBlock = *s.ConstDeclPkgToBlock
 	}
 	if s.VarDeclFuncToBlock != nil {
 		cfg.VarDeclFuncToBlock = *s.VarDeclFuncToBlock
 	}
-	if s.VarDeclInitPkgToBlock != nil {
-		cfg.VarDeclInitPkgToBlock = *s.VarDeclInitPkgToBlock
+	if s.VarDeclPkgToBlock != nil {
+		cfg.VarDeclPkgToBlock = *s.VarDeclPkgToBlock
 	}
 	if s.VarDeclInitFuncToBlock != nil {
 		cfg.VarDeclInitFuncToBlock = *s.VarDeclInitFuncToBlock
@@ -75,11 +79,8 @@ func (s *Settings) toMultiSplitSettings() (multisplit.Settings, error) {
 	if s.VarDeclInitFuncToShort != nil {
 		cfg.VarDeclInitFuncToShort = *s.VarDeclInitFuncToShort
 	}
-	if s.ConstDeclPkgToBlock != nil {
-		cfg.ConstDeclPkgToBlock = *s.ConstDeclPkgToBlock
-	}
-	if s.ConstDeclFuncToBlock != nil {
-		cfg.ConstDeclFuncToBlock = *s.ConstDeclFuncToBlock
+	if s.VarDeclInitPkgToBlock != nil {
+		cfg.VarDeclInitPkgToBlock = *s.VarDeclInitPkgToBlock
 	}
 
 	return cfg, nil
