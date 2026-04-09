@@ -291,7 +291,7 @@ func TestFuncParams(t *testing.T) {
 		FuncParams: true,
 	}, []testResult{
 		{
-			message: "function parameter list with multiple identifiers (p1, p2, p3) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p1, p2, p3) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -300,10 +300,10 @@ func TestFuncParams(t *testing.T) {
 			}},
 		},
 		{
-			message: "function parameter list with multiple identifiers (p4, p5, p6) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p4, p5, p6) should be split into individual parameters",
 		},
 		{
-			message: "function parameter list with multiple identifiers (p7, p8, p9) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p7, p8, p9) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -312,7 +312,7 @@ func TestFuncParams(t *testing.T) {
 			}},
 		},
 		{
-			message: "function parameter list with multiple identifiers (p11, p12, p13) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p11, p12, p13) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -321,10 +321,10 @@ func TestFuncParams(t *testing.T) {
 			}},
 		},
 		{
-			message: "function parameter list with multiple identifiers (p14, p15, p16) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p14, p15, p16) should be split into individual parameters",
 		},
 		{
-			message: "function parameter list with multiple identifiers (p17, p18, p19) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p17, p18, p19) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -333,7 +333,7 @@ func TestFuncParams(t *testing.T) {
 			}},
 		},
 		{
-			message: "function parameter list with multiple identifiers (p21, p22, p23) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p21, p22, p23) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -342,10 +342,10 @@ func TestFuncParams(t *testing.T) {
 			}},
 		},
 		{
-			message: "function parameter list with multiple identifiers (p24, p25, p26) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p24, p25, p26) should be split into individual parameters",
 		},
 		{
-			message: "function parameter list with multiple identifiers (p27, p28, p29) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p27, p28, p29) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -354,7 +354,7 @@ func TestFuncParams(t *testing.T) {
 			}},
 		},
 		{
-			message: "function parameter list with multiple identifiers (p31, p32, p33) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p31, p32, p33) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -363,10 +363,10 @@ func TestFuncParams(t *testing.T) {
 			}},
 		},
 		{
-			message: "function parameter list with multiple identifiers (p34, p35, p36) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p34, p35, p36) should be split into individual parameters",
 		},
 		{
-			message: "function parameter list with multiple identifiers (p37, p38, p39) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p37, p38, p39) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -375,7 +375,7 @@ func TestFuncParams(t *testing.T) {
 			}},
 		},
 		{
-			message: "function parameter list with multiple identifiers (p41, p42, p43) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p41, p42, p43) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -384,10 +384,10 @@ func TestFuncParams(t *testing.T) {
 			}},
 		},
 		{
-			message: "function parameter list with multiple identifiers (p44, p45, p46) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p44, p45, p46) should be split into individual parameters",
 		},
 		{
-			message: "function parameter list with multiple identifiers (p47, p48, p49) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p47, p48, p49) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -396,7 +396,7 @@ func TestFuncParams(t *testing.T) {
 			}},
 		},
 		{
-			message: "function parameter list with multiple identifiers (p51, p52, p53) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p51, p52, p53) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -405,10 +405,10 @@ func TestFuncParams(t *testing.T) {
 			}},
 		},
 		{
-			message: "function parameter list with multiple identifiers (p54, p55, p56) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p54, p55, p56) should be split into individual parameters",
 		},
 		{
-			message: "function parameter list with multiple identifiers (p57, p58, p59) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p57, p58, p59) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -417,7 +417,7 @@ func TestFuncParams(t *testing.T) {
 			}},
 		},
 		{
-			message: "function parameter list with multiple identifiers (p61, p62, p63) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p61, p62, p63) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -426,10 +426,10 @@ func TestFuncParams(t *testing.T) {
 			}},
 		},
 		{
-			message: "function parameter list with multiple identifiers (p64, p65, p66) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p64, p65, p66) should be split into individual parameters",
 		},
 		{
-			message: "function parameter list with multiple identifiers (p67, p68, p69) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p67, p68, p69) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -438,7 +438,7 @@ func TestFuncParams(t *testing.T) {
 			}},
 		},
 		{
-			message: "function parameter list with multiple identifiers (p71, p72, p73) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p71, p72, p73) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -447,10 +447,10 @@ func TestFuncParams(t *testing.T) {
 			}},
 		},
 		{
-			message: "function parameter list with multiple identifiers (p74, p75, p76) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p74, p75, p76) should be split into individual parameters",
 		},
 		{
-			message: "function parameter list with multiple identifiers (p77, p78, p79) should be split into individual parameters",
+			message: "function parameters with multiple identifiers (p77, p78, p79) should be split into individual parameters",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual parameters",
 				newText: []string{
@@ -467,7 +467,7 @@ func TestFuncReturnValues(t *testing.T) {
 		FuncReturnValues: true,
 	}, []testResult{
 		{
-			message: "function return value list with multiple identifiers (r1, r2, r3) should be split into individual return values",
+			message: "function return values with multiple identifiers (r1, r2, r3) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -476,10 +476,10 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r4, r5, r6) should be split into individual return values",
+			message: "function return values with multiple identifiers (r4, r5, r6) should be split into individual return values",
 		},
 		{
-			message: "function return value list with multiple identifiers (r7, r8, r9) should be split into individual return values",
+			message: "function return values with multiple identifiers (r7, r8, r9) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -488,7 +488,7 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r11, r12, r13) should be split into individual return values",
+			message: "function return values with multiple identifiers (r11, r12, r13) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -497,10 +497,10 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r14, r15, r16) should be split into individual return values",
+			message: "function return values with multiple identifiers (r14, r15, r16) should be split into individual return values",
 		},
 		{
-			message: "function return value list with multiple identifiers (r17, r18, r19) should be split into individual return values",
+			message: "function return values with multiple identifiers (r17, r18, r19) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -509,7 +509,7 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r21, r22, r23) should be split into individual return values",
+			message: "function return values with multiple identifiers (r21, r22, r23) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -518,10 +518,10 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r24, r25, r26) should be split into individual return values",
+			message: "function return values with multiple identifiers (r24, r25, r26) should be split into individual return values",
 		},
 		{
-			message: "function return value list with multiple identifiers (r27, r28, r29) should be split into individual return values",
+			message: "function return values with multiple identifiers (r27, r28, r29) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -530,7 +530,7 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r31, r32, r33) should be split into individual return values",
+			message: "function return values with multiple identifiers (r31, r32, r33) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -539,10 +539,10 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r34, r35, r36) should be split into individual return values",
+			message: "function return values with multiple identifiers (r34, r35, r36) should be split into individual return values",
 		},
 		{
-			message: "function return value list with multiple identifiers (r37, r38, r39) should be split into individual return values",
+			message: "function return values with multiple identifiers (r37, r38, r39) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -551,7 +551,7 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r41, r42, r43) should be split into individual return values",
+			message: "function return values with multiple identifiers (r41, r42, r43) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -560,10 +560,10 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r44, r45, r46) should be split into individual return values",
+			message: "function return values with multiple identifiers (r44, r45, r46) should be split into individual return values",
 		},
 		{
-			message: "function return value list with multiple identifiers (r47, r48, r49) should be split into individual return values",
+			message: "function return values with multiple identifiers (r47, r48, r49) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -572,7 +572,7 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r51, r52, r53) should be split into individual return values",
+			message: "function return values with multiple identifiers (r51, r52, r53) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -581,10 +581,10 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r54, r55, r56) should be split into individual return values",
+			message: "function return values with multiple identifiers (r54, r55, r56) should be split into individual return values",
 		},
 		{
-			message: "function return value list with multiple identifiers (r57, r58, r59) should be split into individual return values",
+			message: "function return values with multiple identifiers (r57, r58, r59) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -593,7 +593,7 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r61, r62, r63) should be split into individual return values",
+			message: "function return values with multiple identifiers (r61, r62, r63) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -602,10 +602,10 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r64, r65, r66) should be split into individual return values",
+			message: "function return values with multiple identifiers (r64, r65, r66) should be split into individual return values",
 		},
 		{
-			message: "function return value list with multiple identifiers (r67, r68, r69) should be split into individual return values",
+			message: "function return values with multiple identifiers (r67, r68, r69) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -614,7 +614,7 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r71, r72, r73) should be split into individual return values",
+			message: "function return values with multiple identifiers (r71, r72, r73) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -623,10 +623,10 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r74, r75, r76) should be split into individual return values",
+			message: "function return values with multiple identifiers (r74, r75, r76) should be split into individual return values",
 		},
 		{
-			message: "function return value list with multiple identifiers (r77, r78, r79) should be split into individual return values",
+			message: "function return values with multiple identifiers (r77, r78, r79) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -635,7 +635,7 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r81, r82, r83) should be split into individual return values",
+			message: "function return values with multiple identifiers (r81, r82, r83) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{
@@ -644,10 +644,10 @@ func TestFuncReturnValues(t *testing.T) {
 			}},
 		},
 		{
-			message: "function return value list with multiple identifiers (r84, r85, r86) should be split into individual return values",
+			message: "function return values with multiple identifiers (r84, r85, r86) should be split into individual return values",
 		},
 		{
-			message: "function return value list with multiple identifiers (r87, r88, r89) should be split into individual return values",
+			message: "function return values with multiple identifiers (r87, r88, r89) should be split into individual return values",
 			suggestedFixes: []analysisFix{{
 				message: "split into individual return values",
 				newText: []string{

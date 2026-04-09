@@ -68,9 +68,9 @@ func checkFieldList(pass *analysis.Pass, flist *ast.FieldList, flt fieldListType
 	var msgFmt string
 	switch flt {
 	case fieldListFuncParams:
-		msgFmt = "function parameter list with multiple identifiers (%s) should be split into individual parameters"
+		msgFmt = "function parameters with multiple identifiers (%s) should be split into individual parameters"
 	case fieldListFuncResults:
-		msgFmt = "function return value list with multiple identifiers (%s) should be split into individual return values"
+		msgFmt = "function return values with multiple identifiers (%s) should be split into individual return values"
 	case fieldListStructFields:
 		msgFmt = "struct field declaration with multiple identifiers (%s) should be split into individual fields"
 	default:
