@@ -17,13 +17,13 @@ var ErrUnknownRule = errors.New("unknown rule")
 
 type Settings struct {
 	Rules                  []string `json:"rules"`
-	VarDeclPkgToBlock      *bool    `json:"varDeclPkgToBlock"`
+	ConstDeclFuncToBlock   *bool    `json:"constDeclFuncToBlock"`
+	ConstDeclPkgToBlock    *bool    `json:"constDeclPkgToBlock"`
 	VarDeclFuncToBlock     *bool    `json:"varDeclFuncToBlock"`
-	VarDeclInitPkgToBlock  *bool    `json:"varDeclInitPkgToBlock"`
+	VarDeclPkgToBlock      *bool    `json:"varDeclPkgToBlock"`
 	VarDeclInitFuncToBlock *bool    `json:"varDeclInitFuncToBlock"`
 	VarDeclInitFuncToShort *bool    `json:"varDeclInitFuncToShort"`
-	ConstDeclPkgToBlock    *bool    `json:"constDeclPkgToBlock"`
-	ConstDeclFuncToBlock   *bool    `json:"constDeclFuncToBlock"`
+	VarDeclInitPkgToBlock  *bool    `json:"varDeclInitPkgToBlock"`
 }
 
 func (s *Settings) toMultiSplitSettings() (multisplit.Settings, error) {
@@ -35,26 +35,26 @@ func (s *Settings) toMultiSplitSettings() (multisplit.Settings, error) {
 			switch rule {
 			case "assign":
 				cfg.Assign = true
-			case "const-decl-pkg":
-				cfg.ConstDeclPkg = true
 			case "const-decl-func":
 				cfg.ConstDeclFunc = true
+			case "const-decl-pkg":
+				cfg.ConstDeclPkg = true
 			case "func-params":
 				cfg.FuncParams = true
 			case "func-return-values":
 				cfg.FuncReturnValues = true
-			case "var-decl-func":
-				cfg.VarDeclFunc = true
-			case "var-decl-pkg":
-				cfg.VarDeclPkg = true
-			case "var-decl-init-pkg":
-				cfg.VarDeclInitPkg = true
-			case "var-decl-init-func":
-				cfg.VarDeclInitFunc = true
 			case "short-var-decl":
 				cfg.ShortVarDecl = true
 			case "struct-fields":
 				cfg.StructFields = true
+			case "var-decl-func":
+				cfg.VarDeclFunc = true
+			case "var-decl-pkg":
+				cfg.VarDeclPkg = true
+			case "var-decl-init-func":
+				cfg.VarDeclInitFunc = true
+			case "var-decl-init-pkg":
+				cfg.VarDeclInitPkg = true
 			default:
 				return multisplit.Settings{}, fmt.Errorf("%w: %s", ErrUnknownRule, rule)
 			}

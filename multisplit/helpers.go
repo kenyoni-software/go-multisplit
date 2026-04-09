@@ -15,12 +15,12 @@ func reportValueSpec(pass *analysis.Pass, decl *ast.GenDecl, vspec *ast.ValueSpe
 	switch decl.Tok { //nolint:exhaustive
 	case token.VAR:
 		if len(vspec.Values) == 0 {
-			msgFmt = "multiple variable declaration (%s) should be split into individual variables"
+			msgFmt = "variable declaration with multiple identifiers (%s) should be split into individual declarations"
 		} else {
-			msgFmt = "multiple variable declaration with initializer (%s) should be split into individual variables"
+			msgFmt = "variable declaration with multiple identifiers and initializers (%s) should be split into individual declarations"
 		}
 	case token.CONST:
-		msgFmt = "multiple constant declaration (%s) should be split into individual constants"
+		msgFmt = "const declaration with multiple identifiers (%s) should be split into individual declarations"
 	default:
 		return
 	}
@@ -38,7 +38,7 @@ func reportValueSpec(pass *analysis.Pass, decl *ast.GenDecl, vspec *ast.ValueSpe
 		var fix analysis.SuggestedFix
 		var err error
 		if decl.Lparen.IsValid() {
-			fix, err = createBlockValueSpecFix(pass.Fset, vspec)
+			fix, err = createBlockValueSpecFix(pass.Fset, decl, vspec)
 		} else {
 			fix, err = createValueSpecFix(pass.Fset, decl, vspec, toBlock, toShort)
 		}
@@ -68,11 +68,11 @@ func checkFieldList(pass *analysis.Pass, flist *ast.FieldList, flt fieldListType
 	var msgFmt string
 	switch flt {
 	case fieldListFuncParams:
-		msgFmt = "multiple function parameters (%s) should be split into individual parameters"
+		msgFmt = "function parameter list with multiple identifiers (%s) should be split into individual parameters"
 	case fieldListFuncResults:
-		msgFmt = "multiple function return values (%s) should be split into individual return values"
+		msgFmt = "function return value list with multiple identifiers (%s) should be split into individual return values"
 	case fieldListStructFields:
-		msgFmt = "multiple struct fields (%s) should be split into individual fields"
+		msgFmt = "struct field declaration with multiple identifiers (%s) should be split into individual fields"
 	default:
 		return
 	}
@@ -107,9 +107,9 @@ func reportAssignStmt(pass *analysis.Pass, stmt *ast.AssignStmt, commentMap ast.
 	//nolint:exhaustive
 	switch stmt.Tok {
 	case token.ASSIGN:
-		msgFmt = "multiple assignment (%s) should be split into individual assignments"
+		msgFmt = "assignment with multiple targets (%s) should be split into individual assignments"
 	case token.DEFINE:
-		msgFmt = "multiple short variable declaration (%s) should be split into individual short declarations"
+		msgFmt = "short variable declaration with multiple identifiers (%s) should be split into individual declarations"
 	default:
 		return
 	}

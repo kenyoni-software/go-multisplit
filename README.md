@@ -1,18 +1,18 @@
 # Go MultiSplit
 
-Go MultiSplit is a `go/analysis`-based linter that detects multiple declarations, assignments, struct fields and function parameters or return values. It rewrites them into single declarations, statements or fields, making code clearer and more explicit.
+Go MultiSplit is a `go/analysis`-based linter that detects when multiple identifiers are declared, assigned or listed together (e.g. `var a, b int` or `a, b := 1, 2`). It recommends splitting these into separate declarations or assignments to improve clarity, prevent subtle bugs and make code easier to maintain.
 
 ## Options
 
 No fix will be suggested
 - if a declaration or statement has a comment attached, to avoid changing the intent of the comment
-- If a multiple declaration or statement uses an anonymous struct type, to avoid duplicate code
+- if a multiple declaration or statement uses an anonymous struct type, to avoid duplicate code
 
-All **\*-to-block** options rewrite declarations into a grouped block. It will never unblock.
+All **\*-to-block** options rewrite declarations into a grouped block. Grouped blocks will never be unblocked.
 
 - **`var-decl-pkg`** (default: `true`)  
-    Split multiple `var` declarations at package scope.  
-    If **`var-decl-pkg-to-block`** (default: `true`) is enabled, declarations are rewritten into a grouped block.
+    Split `var` declarations with multiple identifiers at package scope into individual declarations.  
+    If **`var-decl-pkg-to-block`** (default: `true`) is enabled, the individual declarations are placed inside a `var` block.
 
     Before:
     ```go
@@ -36,8 +36,8 @@ All **\*-to-block** options rewrite declarations into a grouped block. It will n
     ```
 
 * **`var-decl-func`** (default: `false`)
-    Split multiple `var` declarations inside function bodies.
-    If **`var-decl-func-to-block`** (default: `false`) is enabled, declarations are rewritten into a grouped block.
+    Split `var` declarations with multiple identifiers inside function bodies into individual declarations.  
+    If **`var-decl-func-to-block`** (default: `false`) is enabled, the individual declarations are placed inside a `var` block.
 
     Before:
 
@@ -68,8 +68,8 @@ All **\*-to-block** options rewrite declarations into a grouped block. It will n
     ```
 
 * **`var-decl-init-pkg`** (default: `true`)
-    Split multiple `var` declarations with initializers at package scope.
-    If **`var-decl-init-pkg-to-block`** (default: `true`) is enabled, declarations are rewritten into a grouped block.
+    Split `var` declarations with multiple identifiers and initializers at package scope into individual declarations.  
+    If **`var-decl-init-pkg-to-block`** (default: `true`) is enabled, the individual declarations are placed inside a `var` block.
 
     Before:
 
@@ -94,9 +94,9 @@ All **\*-to-block** options rewrite declarations into a grouped block. It will n
     ```
 
 * **`var-decl-init-func`** (default: `false`)
-    Split multiple `var` declarations with initializers inside functions.
-    If **`var-decl-init-func-to-block`** (default: `false`) is enabled, declarations are rewritten into a grouped block.
-    If **`var-decl-init-func-to-short`** (default: `true`) is enabled, non-block declarations without explicit type specification are rewritten to short variable declarations (`:=`). Shorthand takes precedence if applicable.
+    Split multiple `var` declarations with multiple identifiers and initializers inside functions into individual declarations.  
+    If **`var-decl-init-func-to-block`** (default: `false`) is enabled, the individual declarations are placed inside a `var` block.  
+    If **`var-decl-init-func-to-short`** (default: `true`) is enabled and the declarations are not placed in a block, any declaration without an explicit type will be rewritten to a short variable declaration (`:=`). The short form takes precedence when applicable.
 
     Before:
 
@@ -136,8 +136,8 @@ All **\*-to-block** options rewrite declarations into a grouped block. It will n
     ```
 
 * **`const-decl-pkg`** (default: `true`)
-    Split multiple `const` declarations at package scope.
-    If **`const-decl-pkg-to-block`** (default: `true`) is enabled, declarations are rewritten into a grouped block.
+    Split `const` declarations with multiple identifiers at package scope into individual declarations.  
+    If **`const-decl-pkg-to-block`** (default: `true`) is enabled, the individual declarations are placed inside a `const` block.
 
     Before:
 
@@ -162,8 +162,8 @@ All **\*-to-block** options rewrite declarations into a grouped block. It will n
     ```
 
 * **`const-decl-func`** (default: `false`)
-    Split multiple `const` declarations in function scope.
-    If **`const-decl-func-to-block`** (default: `false`) is enabled, declarations are rewritten into a grouped block.
+    Split `const` declarations with multiple identifiers inside functions into individual declarations.  
+    If **`const-decl-func-to-block`** (default: `false`) is enabled, the individual declarations are placed inside a `const` block.
 
     Before:
 
@@ -194,7 +194,7 @@ All **\*-to-block** options rewrite declarations into a grouped block. It will n
     ```
 
 * **`func-params`** (default: `true`)
-    Split multiple named function parameters into individual parameters.
+    Split function parameters with multiple identifiers into individual parameters.
 
     Before:
 
@@ -209,7 +209,7 @@ All **\*-to-block** options rewrite declarations into a grouped block. It will n
     ```
 
 * **`func-return-values`** (default: `true`)
-    Split multiple named function return values into individual return values.
+    Split function return values with multiple identifiers into individual return values.
 
     Before:
 
@@ -224,7 +224,7 @@ All **\*-to-block** options rewrite declarations into a grouped block. It will n
     ```
 
 * **`assign`** (default: `false`)
-    Split multiple named assignments into individual assignment statements.
+    Split assignments with multiple targets into individual assignments.
 
     Before:
 
@@ -240,7 +240,7 @@ All **\*-to-block** options rewrite declarations into a grouped block. It will n
     ```
 
 * **`short-var-decl`** (default: `false`)
-    Split multiple short declarations into individual short declarations.
+    Split short variable declarations with multiple identifiers into individual declarations.
 
     Before:
 
@@ -256,7 +256,7 @@ All **\*-to-block** options rewrite declarations into a grouped block. It will n
     ```
 
 * **`struct-fields`** (default: `true`)
-    Split multiple struct fields into individual fields.
+    Split struct field declarations with multiple identifiers into individual fields.
 
     Before:
 
@@ -281,18 +281,32 @@ All **\*-to-block** options rewrite declarations into a grouped block. It will n
 linters-settings:
   multisplit:
     # The set of rules to apply. If empty, the default rules will be applied.
-    # Default: var-decl-pkg, var-decl-init-pkg, const-decl-pkg, func-params, func-return-values, struct-fields
+    # Default: const-decl-pkg, func-params, func-return-values, struct-fields, var-decl-init-pkg, var-decl-pkg
     rules:
-      - var-decl-pkg
-      - var-decl-func
       - assign
+      - var-decl-func
+      - var-decl-pkg
 
 
-    varDeclPkgToBlock: false
-    varDeclFuncToBlock: true
-    varDeclInitPkgToBlock: false
-    varDeclInitFuncToBlock: true
-    varDeclInitFuncToShort: false
-    constDeclPkgToBlock: false
+    # Whether to rewrite multiple const declarations inside functions into a const block.
+    # Default: false
     constDeclFuncToBlock: true
+    # Whether to rewrite multiple const declarations at package scope into a const block.
+    # Default: true
+    constDeclPkgToBlock: false
+    # Whether to rewrite multiple declarations inside functions into a const block.
+    # Default: false
+    varDeclFuncToBlock: true
+    # Whether to rewrite multiple declarations at package scope into a var block.
+    # Default: true
+    varDeclPkgToBlock: false
+    # Whether to rewrite multiple declarations with initializers inside functions into a var block.
+    # Default: false
+    varDeclInitFuncToBlock: true
+    # Whether to rewrite untyped multiple variable declarations inside functions into short declarations.
+    # Default: true
+    varDeclInitFuncToShort: false
+    # Whether to rewrite multiple declarations with initializers at package scope into a var block.
+    # Default: false
+    varDeclInitPkgToBlock: false
 ```

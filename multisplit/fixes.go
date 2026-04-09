@@ -76,7 +76,7 @@ func createValueSpecFix(fset *token.FileSet, decl *ast.GenDecl, vspec *ast.Value
 	}
 
 	return analysis.SuggestedFix{
-		Message: "split multiple declaration",
+		Message: valueFixMsg(decl.Tok),
 		TextEdits: []analysis.TextEdit{{
 			Pos:     decl.Pos(),
 			End:     decl.End(),
@@ -87,7 +87,7 @@ func createValueSpecFix(fset *token.FileSet, decl *ast.GenDecl, vspec *ast.Value
 
 // createBlockValueSpecFix builds a fix for a multiple ValueSpec that already sits inside a parenthesized GenDecl.
 // Only the spec's own range is replaced so that sibling specs are preserved.
-func createBlockValueSpecFix(fset *token.FileSet, vspec *ast.ValueSpec) (analysis.SuggestedFix, error) {
+func createBlockValueSpecFix(fset *token.FileSet, decl *ast.GenDecl, vspec *ast.ValueSpec) (analysis.SuggestedFix, error) {
 	var typeStr string
 	if vspec.Type != nil {
 		var err error
@@ -118,7 +118,7 @@ func createBlockValueSpecFix(fset *token.FileSet, vspec *ast.ValueSpec) (analysi
 	}
 
 	return analysis.SuggestedFix{
-		Message: "split multiple declaration",
+		Message: valueFixMsg(decl.Tok),
 		TextEdits: []analysis.TextEdit{{
 			Pos:     vspec.Pos(),
 			End:     vspec.End(),
@@ -127,7 +127,7 @@ func createBlockValueSpecFix(fset *token.FileSet, vspec *ast.ValueSpec) (analysi
 	}, nil
 }
 
-// createFieldFix builds a fix that expands a single grouped *ast.Field into individually typed fields.
+// createFieldFix builds a fix that expands a single block *ast.Field into individually typed fields.
 // The separator between fields is chosen by fieldSep based on whether the list is inline or multi-line.
 func createFieldFix(fset *token.FileSet, flist *ast.FieldList, field *ast.Field, flt fieldListType) (analysis.SuggestedFix, error) {
 	typeStr, err := nodeToString(fset, field.Type)
@@ -152,13 +152,13 @@ func createFieldFix(fset *token.FileSet, flist *ast.FieldList, field *ast.Field,
 	var fixMsg string
 	switch flt {
 	case fieldListFuncParams:
-		fixMsg = "split multiple function parameters"
+		fixMsg = "split into individual parameters"
 	case fieldListFuncResults:
-		fixMsg = "split multiple function return values"
+		fixMsg = "split into individual return values"
 	case fieldListStructFields:
-		fixMsg = "split multiple struct fields"
+		fixMsg = "split into individual struct fields"
 	default:
-		fixMsg = "split multiple fields"
+		fixMsg = "split into individual fields"
 	}
 
 	return analysis.SuggestedFix{
@@ -198,11 +198,11 @@ func createAssignFix(fset *token.FileSet, stmt *ast.AssignStmt) (analysis.Sugges
 	var msg string
 	switch stmt.Tok { //nolint:exhaustive
 	case token.ASSIGN:
-		msg = "split multiple assignment"
+		msg = "split into individual assignments"
 	case token.DEFINE:
-		msg = "split multiple short variable declaration"
+		msg = "split into individual short variable declarations"
 	default:
-		msg = "split multiple statement"
+		msg = "split into individual statements"
 	}
 
 	return analysis.SuggestedFix{
@@ -213,6 +213,18 @@ func createAssignFix(fset *token.FileSet, stmt *ast.AssignStmt) (analysis.Sugges
 			NewText: []byte(strings.Join(parts, "\n"+indentAt(fset, stmt.Pos()))),
 		}},
 	}, nil
+}
+
+// valueFixMsg returns the fix message for a ValueSpec based on the GenDecl token.
+func valueFixMsg(tok token.Token) string {
+	switch tok { //nolint:exhaustive
+	case token.VAR:
+		return "split into individual variable declarations"
+	case token.CONST:
+		return "split into individual const declarations"
+	default:
+		return "split into individual declarations"
+	}
 }
 
 // nodeToString renders an AST node back to formatted Go source using the FileSet that was used to parse the file.
