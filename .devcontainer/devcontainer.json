@@ -3,8 +3,30 @@
 	"image": "mcr.microsoft.com/devcontainers/go:1.25",
 	"customizations": {
 		"vscode": {
-			"settings": {},
+			"settings": {
+				"go.lintTool": "golangci-lint",
+				"go.lintFlags": [
+					"--path-mode=abs"
+					//"--fast-only"
+				],
+				"go.formatTool": "custom",
+				"go.alternateTools": {
+					"customFormatter": "golangci-lint"
+				},
+				"go.formatFlags": [
+					"fmt",
+					"--stdin"
+				],
+				"gopls": {
+					"formatting.gofumpt": false
+				},
+				"files.exclude": {
+					"**/.git": true
+				},
+				"recommendation"
+			},
 			"extensions": [
+				"github.vscode-github-actions",
 				"golang.go",
 				"ms-azuretools.vscode-docker"
 			]
