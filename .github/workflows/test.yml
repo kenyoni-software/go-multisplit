@@ -1,0 +1,28 @@
+name: Test
+
+on: [workflow_call, workflow_dispatch]
+
+jobs:
+  multisplit:
+    name: multisplit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: "go.mod"
+      - name: Test multisplit
+        run: go test -v ./...
+
+  golangci-plugin:
+    name: golangci-plugin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: "golangci-plugin/go.mod"
+          cache-dependency-path: "golangci-plugin/go.sum"
+      - name: Test golangci-plugin
+        working-directory: golangci-plugin
+        run: go test -v ./...
