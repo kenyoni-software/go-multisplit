@@ -125,7 +125,8 @@ func (w *walker) checkStruct(node *ast.StructType) {
 	checkFieldList(w.pass, node.Fields, fieldListStructFields)
 }
 
-func (w *walker) declConfig(tok token.Token, isInit bool) (enabled, toBlock, toShort bool) {
+//nolint:gocognit,gocyclo
+func (w *walker) declConfig(tok token.Token, isInit bool) (enabled bool, toBlock bool, toShort bool) {
 	cfg := w.an.Settings
 
 	switch tok { //nolint:exhaustive
@@ -147,6 +148,8 @@ func (w *walker) declConfig(tok token.Token, isInit bool) (enabled, toBlock, toS
 			enabled = cfg.ConstDeclPkg
 			toBlock = cfg.ConstDeclPkgToBlock
 		}
+	default:
+		enabled = false
 	}
 
 	return enabled, toBlock, toShort

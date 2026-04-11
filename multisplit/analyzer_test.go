@@ -1,4 +1,4 @@
-//nolint:dupl,funlen
+//nolint:dupl,funlen,goconst,revive
 package multisplit_test
 
 import (
