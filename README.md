@@ -284,38 +284,56 @@ All **\*-to-block** options rewrite declarations into a grouped block. Grouped b
 
 ## golangci-lint
 
+You can integrate Go MultiSplit with [golangci-lint](https://golangci-lint.run/) by using the module plugin system. Create the following file and run `golangci-lint custom` to build the custom linter. Then you can use the resulting binary `custom-gcl` to run the linter on the codebase.
+
+The following configuration uses the `main` branch of golangci-lint, if another version is required, change it to an explicit version like `v2.0.0`.
+
+`.custom-gcl.yml`
+```yaml
+version: main
+plugins:
+  - module: "github.com/kenyoni-software/go-multisplit"
+    import: "github.com/kenyoni-software/go-multisplit/golangci-plugin"
+    version: v1.0.0
+```
+
+Add MultiSplit to the `.golangci.yml` configuration:
+
+`.golangci.yml`
 ```yaml
 version: "2"
-
 linters:
   settings:
-    multisplit:
-      # The set of rules to apply. If empty, the default rules will be applied.
-      # Default: const-decl-pkg, func-params, func-return-values, struct-fields, var-decl-init-pkg, var-decl-pkg
-      rules:
-      - assign
-      - var-decl-func
-      - var-decl-pkg
+    custom:
+      multisplit:
+        type: "module"
+        settings:
+          # The set of rules to apply. If empty, the default rules will be applied.
+          # Default: const-decl-pkg, func-params, func-return-values, struct-fields, var-decl-init-pkg, var-decl-pkg
+          rules:
+            - assign
+            - var-decl-func
+            - var-decl-pkg
 
-      # If enabled rewrite const declarations with multiple identifiers inside functions into a const block.
-      # Default: false
-      const-decl-func-to-block: true
-      # If enabled rewrite const declarations with multiple identifiers at package scope into a const block.
-      # Default: true
-      const-decl-pkg-to-block: false
-      # If enabled rewrite var declarations with multiple identifiers inside functions into a const block.
-      # Default: false
-      var-decl-func-to-block: true
-      # If enabled rewrite var declarations with multiple identifiers at package scope into a var block.
-      # Default: true
-      var-decl-pkg-to-block: false
-      # If enabled rewrite var declarations with multiple identifiers and initializers inside functions into a var block.
-      # Default: false
-      var-decl-init-func-to-block: true
-      # If enabled rewrite untyped var declarations with multiple identifiers inside functions into short declarations.
-      # Default: true
-      var-decl-init-func-to-short: false
-      # If enabled rewrite var declarations with multiple identifiers and initializers at package scope into a var block.
-      # Default: false
-      var-decl-init-pkg-to-block: false
+          # If enabled rewrite const declarations with multiple identifiers inside functions into a const block.
+          # Default: false
+          const-decl-func-to-block: true
+          # If enabled rewrite const declarations with multiple identifiers at package scope into a const block.
+          # Default: true
+          const-decl-pkg-to-block: false
+          # If enabled rewrite var declarations with multiple identifiers inside functions into a const block.
+          # Default: false
+          var-decl-func-to-block: true
+          # If enabled rewrite var declarations with multiple identifiers at package scope into a var block.
+          # Default: true
+          var-decl-pkg-to-block: false
+          # If enabled rewrite var declarations with multiple identifiers and initializers inside functions into a var block.
+          # Default: false
+          var-decl-init-func-to-block: true
+          # If enabled rewrite untyped var declarations with multiple identifiers inside functions into short declarations.
+          # Default: true
+          var-decl-init-func-to-short: false
+          # If enabled rewrite var declarations with multiple identifiers and initializers at package scope into a var block.
+          # Default: false
+          var-decl-init-pkg-to-block: false
 ```
