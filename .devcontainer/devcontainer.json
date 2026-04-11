@@ -1,6 +1,8 @@
 {
 	"name": "go-multisplit",
 	"image": "mcr.microsoft.com/devcontainers/go:1.25",
+	"remoteUser": "vscode",
+	"containerUser": "vscode",
 	"customizations": {
 		"vscode": {
 			"settings": {
@@ -11,9 +13,7 @@
 				],
 				"go.formatTool": "custom",
 				"go.alternateTools": {
-					"golangci-lint": "custom-gcl",
-					"customFormatter": "custom-gcl"
-					// "customFormatter": "golangci-lint"
+					"customFormatter": "golangci-lint"
 				},
 				"go.formatFlags": [
 					"fmt",
@@ -38,7 +38,5 @@
 			]
 		}
 	},
-	"remoteUser": "vscode",
-	"containerUser": "vscode",
 	"postCreateCommand": "./.devcontainer/post-create.sh"
 }
