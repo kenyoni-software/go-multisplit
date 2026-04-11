@@ -1,3 +1,4 @@
+// Multisplit analyzer executable.
 package main
 
 import (
