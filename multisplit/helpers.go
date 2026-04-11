@@ -35,13 +35,7 @@ func reportValueSpec(pass *analysis.Pass, decl *ast.GenDecl, vspec *ast.ValueSpe
 	// only create a fix if we do not have a comment, so we may not change the intent
 	// also, do not create a fix for struct type fields as this would lead to duplicate code
 	if vspec.Comment == nil && !isStructType {
-		var fix analysis.SuggestedFix
-		var err error
-		if decl.Lparen.IsValid() {
-			fix, err = createBlockValueSpecFix(pass.Fset, decl, vspec)
-		} else {
-			fix, err = createValueSpecFix(pass.Fset, decl, vspec, toBlock, toShort)
-		}
+		fix, err := createValueSpecFix(pass.Fset, decl, vspec, toBlock, toShort)
 		if err == nil {
 			diag.SuggestedFixes = []analysis.SuggestedFix{fix}
 		}
