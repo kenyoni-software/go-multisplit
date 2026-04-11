@@ -19,3 +19,6 @@ jobs:
           go-version-file: "go.mod"
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v9
+        with:
+          # skip verification, because we use version "main" / latest instead of a pinned version
+          verify: false
