@@ -11,7 +11,9 @@
 				],
 				"go.formatTool": "custom",
 				"go.alternateTools": {
-					"customFormatter": "golangci-lint"
+					"golangci-lint": "custom-gcl",
+					"customFormatter": "custom-gcl"
+					// "customFormatter": "golangci-lint"
 				},
 				"go.formatFlags": [
 					"fmt",
@@ -23,20 +25,20 @@
 				"files.exclude": {
 					"**/.git": true
 				},
-				"recommendation"
+				"yaml.schemas": {
+					"https://raw.githubusercontent.com/golangci/golangci-lint/refs/heads/main/jsonschema/custom-gcl.jsonschema.json": ".custom-gcl.yaml",
+					"https://raw.githubusercontent.com/golangci/golangci-lint/refs/heads/main/jsonschema/golangci.jsonschema.json": ".golangci.yaml"
+				}
 			},
 			"extensions": [
 				"github.vscode-github-actions",
 				"golang.go",
-				"ms-azuretools.vscode-docker"
+				"ms-azuretools.vscode-docker",
+				"redhat.vscode-yaml"
 			]
 		}
 	},
 	"remoteUser": "vscode",
 	"containerUser": "vscode",
-	"postCreateCommand": {
-		"install packages": "go mod download",
-		"install golangci-lint": "curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/HEAD/install.sh | sh -s -- -b $(go env GOPATH)/bin",
-		"install os packages": "sudo apt update && sudo apt install -y graphviz"
-	}
+	"postCreateCommand": "./.devcontainer/post-create.sh"
 }

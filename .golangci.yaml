@@ -22,10 +22,6 @@ linters:
     - exhaustruct
     # inits are required to setup global states
     - gochecknoinits
-    # covered by revive
-    - gocognit
-    # covered by revive
-    - gocyclo
     # naked returns are not allowed, they make the code less readable and harder to maintain
     - nakedret
     # named returns are better self documenting
@@ -33,8 +29,28 @@ linters:
     # outdated use wsl_v5
     - wsl
   settings:
+    custom:
+      multisplit:
+        type: "module"
+        settings:
+          rules:
+            - assign
+            - const-decl-func
+            - const-decl-pkg
+            - func-params
+            - func-return-values
+            - short-var-decl
+            - struct-fields
+            - var-decl-func
+            - var-decl-pkg
+            - var-decl-init-func
+            - var-decl-init-pkg
     funlen:
       lines: 80
+    gocognit:
+      min-complexity: 15
+    gocyclo:
+      min-complexity: 15
     lll:
       line-length: 160
     revive:
@@ -46,10 +62,15 @@ linters:
             - allow-strs: '""," "'
               allow-ints: "0,1"
               allow-floats: "0.0,1.0"
+        # covered by gocognit
         - name: cognitive-complexity
-          arguments: [15]
+          disabled: true
+        # covered by gocyclo
         - name: cyclomatic
-          arguments: [15]
+          disabled: true
+        # covered by funlen
+        - name: function-length
+          disabled: true
         - name: line-length-limit
           arguments: [160]
         # everything starting with underscore is considered as intentionally unused, but may have a name to improve readability
