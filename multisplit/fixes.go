@@ -36,12 +36,22 @@ func createValueSpecFix(fset *token.FileSet, decl *ast.GenDecl, vspec *ast.Value
 	if err != nil {
 		return analysis.SuggestedFix{}, err
 	}
+	var pos token.Pos
+	var end token.Pos
+	// if in block only replace the part inside
+	if decl.Lparen.IsValid() {
+		pos = vspec.Pos()
+		end = vspec.End()
+	} else {
+		pos = decl.Pos()
+		end = decl.End()
+	}
 
 	return analysis.SuggestedFix{
 		Message: valueFixMsg(decl.Tok),
 		TextEdits: []analysis.TextEdit{{
-			Pos:     decl.Pos(),
-			End:     decl.End(),
+			Pos:     pos,
+			End:     end,
 			NewText: []byte(edit),
 		}},
 	}, nil
