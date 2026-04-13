@@ -294,7 +294,7 @@ version: main
 plugins:
   - module: "github.com/kenyoni-software/go-multisplit"
     import: "github.com/kenyoni-software/go-multisplit/golangci-plugin"
-    version: v1.1.2
+    version: v1.1.3
 ```
 
 Add MultiSplit to the `.golangci.yml` configuration:

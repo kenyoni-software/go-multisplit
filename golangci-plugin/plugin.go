@@ -17,13 +17,13 @@ var ErrUnknownRule = errors.New("unknown rule")
 
 type Settings struct {
 	Rules                  []string `json:"rules"`
-	ConstDeclFuncToBlock   *bool    `json:"constDeclFuncToBlock"`
-	ConstDeclPkgToBlock    *bool    `json:"constDeclPkgToBlock"`
-	VarDeclFuncToBlock     *bool    `json:"varDeclFuncToBlock"`
-	VarDeclPkgToBlock      *bool    `json:"varDeclPkgToBlock"`
-	VarDeclInitFuncToBlock *bool    `json:"varDeclInitFuncToBlock"`
-	VarDeclInitFuncToShort *bool    `json:"varDeclInitFuncToShort"`
-	VarDeclInitPkgToBlock  *bool    `json:"varDeclInitPkgToBlock"`
+	ConstDeclFuncToBlock   *bool    `json:"const-decl-func-to-block"`
+	ConstDeclPkgToBlock    *bool    `json:"const-decl-pkg-to-block"`
+	VarDeclFuncToBlock     *bool    `json:"var-decl-func-to-block"`
+	VarDeclPkgToBlock      *bool    `json:"var-decl-pkg-to-block"`
+	VarDeclInitFuncToBlock *bool    `json:"var-decl-init-func-to-block"`
+	VarDeclInitFuncToShort *bool    `json:"var-decl-init-func-to-short"`
+	VarDeclInitPkgToBlock  *bool    `json:"var-decl-init-pkg-to-block"`
 }
 
 func (s *Settings) toMultiSplitSettings() (multisplit.Settings, error) {
