@@ -3,6 +3,7 @@ module github.com/kenyoni-software/go-multisplit
 go 1.25.0
 
 require (
+	github.com/google/go-cmp v0.6.0
 	github.com/stretchr/testify v1.11.1
 	golang.org/x/tools v0.43.0
 )
