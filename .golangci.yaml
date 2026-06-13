@@ -32,6 +32,7 @@ linters:
     custom:
       multisplit:
         type: "module"
+        description: "Detects when multiple identifiers are declared, assigned or listed together and suggests splitting them into multiple lines for improved readability."
         settings:
           rules:
             - assign

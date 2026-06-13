@@ -307,6 +307,7 @@ linters:
     custom:
       multisplit:
         type: "module"
+        description: "Detects when multiple identifiers are declared, assigned or listed together and suggests splitting them into multiple lines for improved readability."
         settings:
           # The set of rules to apply. If empty, the default rules will be applied.
           # Default: const-decl-pkg, func-params, func-return-values, struct-fields, var-decl-init-pkg, var-decl-pkg
