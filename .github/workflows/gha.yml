@@ -13,6 +13,10 @@ jobs:
   codeql:
     name: CodeQL Analysis
     uses: ./.github/workflows/codeql.yml
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
 
   golangci-lint:
     name: golangci-lint
@@ -33,3 +37,5 @@ jobs:
       - codeql
       - golangci-lint
       - test
+    permissions:
+      contents: write

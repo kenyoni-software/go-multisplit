@@ -12,9 +12,11 @@ jobs:
         goarch: [amd64, arm64]
     steps:
       - uses: actions/checkout@v6
+
       - uses: actions/setup-go@v6
         with:
           go-version-file: "go.mod"
+
       - name: Set variables
         id: vars
         run: |
@@ -24,11 +26,13 @@ jobs:
           else
             echo "EXT=" >> $GITHUB_OUTPUT
           fi
+
       - name: Build
         run: |
           mkdir dist
           GOOS=${{ matrix.goos }} GOARCH=${{ matrix.goarch }} \
           go build -v -o dist/multisplit-${{ matrix.goos }}-${{ matrix.goarch }}${{ steps.vars.outputs.EXT }} ./cmd/multisplit
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v6
         with:
