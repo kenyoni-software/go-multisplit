@@ -101,7 +101,7 @@ type Analyzer struct {
 // NewAnalyzer constructs an Analyzer with DefaultSettings and registers all command-line flags.
 func NewAnalyzer() *Analyzer {
 	analyzer := &Analyzer{
-		Analyzer: &analysis.Analyzer{
+		Analyzer: &analysis.Analyzer{ //nolint:exhaustruct_v5
 			Name: "multisplit",
 			Doc:  "Split multiple declarations, assignments, function parameters/return values and struct fields into individual lines",
 		},
@@ -170,7 +170,7 @@ func (an *Analyzer) run(pass *analysis.Pass) (any, error) {
 	}
 
 	for _, file := range pass.Files {
-		ast.Walk(&walker{
+		ast.Walk(&walker{ //nolint:exhaustruct_v5
 			an:         an,
 			pass:       pass,
 			commentMap: ast.NewCommentMap(pass.Fset, file, file.Comments),

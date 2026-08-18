@@ -34,7 +34,7 @@ func (w *walker) Visit(n ast.Node) ast.Visitor {
 			return nil
 		}
 
-		subW := &walker{
+		subW := &walker{ //nolint:exhaustruct_v5
 			an:         w.an,
 			pass:       w.pass,
 			inFunc:     w.inFunc,

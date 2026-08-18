@@ -82,11 +82,13 @@ linters:
           arguments:
             - allow-regex: "^_.*"
     wsl_v5:
-      default: all
       # most is disabled because the developer can be trusted enough to group the code properly
       disable:
         # while generally good, it adds too often lines, where compact code is preferred
         - after-block
+        - after-decl
+        - after-defer
+        - after-go
         # prefer compact code
         - append
         # prefer compact code

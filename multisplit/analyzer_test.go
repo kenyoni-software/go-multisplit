@@ -13,7 +13,7 @@ func TestAnalyzerDiagnstic(t *testing.T) {
 	t.Parallel()
 
 	analyzer := multisplit.NewAnalyzer()
-	analyzer.Settings = multisplit.Settings{
+	analyzer.Settings = multisplit.Settings{ //nolint:exhaustruct_v5
 		Assign:           true,
 		ConstDeclFunc:    true,
 		ConstDeclPkg:     true,
@@ -33,7 +33,7 @@ func TestAnalyzerDiagnstic(t *testing.T) {
 func TestAnalyzerFix(t *testing.T) {
 	t.Parallel()
 
-	baseCfg := multisplit.Settings{
+	baseCfg := multisplit.Settings{ //nolint:exhaustruct_v5
 		Assign:           true,
 		ConstDeclFunc:    true,
 		ConstDeclPkg:     true,

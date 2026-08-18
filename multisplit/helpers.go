@@ -25,7 +25,7 @@ func reportValueSpec(pass *analysis.Pass, decl *ast.GenDecl, vspec *ast.ValueSpe
 		return
 	}
 
-	diag := analysis.Diagnostic{
+	diag := analysis.Diagnostic{ //nolint:exhaustruct_v5
 		Pos:     vspec.Pos(),
 		End:     vspec.End(),
 		Message: fmt.Sprintf(msgFmt, joinIdents(vspec.Names)),
@@ -80,7 +80,7 @@ func checkFieldList(pass *analysis.Pass, flist *ast.FieldList, flt fieldListType
 			continue
 		}
 
-		diag := analysis.Diagnostic{
+		diag := analysis.Diagnostic{ //nolint:exhaustruct_v5
 			Pos:     field.Pos(),
 			End:     field.End(),
 			Message: fmt.Sprintf(msgFmt, joinIdents(field.Names)),
@@ -112,7 +112,7 @@ func reportAssignStmt(pass *analysis.Pass, stmt *ast.AssignStmt, commentMap ast.
 		return
 	}
 
-	diag := analysis.Diagnostic{
+	diag := analysis.Diagnostic{ //nolint:exhaustruct_v5
 		Pos:     stmt.Pos(),
 		End:     stmt.End(),
 		Message: fmt.Sprintf(msgFmt, joinLHSExprs(stmt.Lhs)),
