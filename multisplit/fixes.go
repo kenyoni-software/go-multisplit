@@ -232,6 +232,8 @@ func fieldFixMsg(flt fieldListType) string {
 		return "split into individual return values"
 	case fieldListStructFields:
 		return "split into individual struct fields"
+	case fieldListTypeParams:
+		return "split into individual type parameters"
 	default:
 		return "split into individual fields"
 	}

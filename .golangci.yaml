@@ -26,13 +26,15 @@ linters:
     - nakedret
     # named returns are better self documenting
     - nonamedreturns
+    # gofumpt not supporting formatting tags
+    - tagalign
     # outdated use wsl_v5
     - wsl
   settings:
     custom:
       multisplit:
         type: "module"
-        description: "Detects when multiple identifiers are declared, assigned or listed together and suggests splitting them into multiple lines for improved readability."
+        description: "Detects when multiple identifiers are declared, assigned or listed together and suggests splitting them for improved readability."
         settings:
           rules:
             - assign
@@ -42,6 +44,7 @@ linters:
             - func-return-values
             - short-var-decl
             - struct-fields
+            - type-params
             - var-decl-func
             - var-decl-pkg
             - var-decl-init-func

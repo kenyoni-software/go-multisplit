@@ -59,6 +59,8 @@ func (w *walker) Visit(n ast.Node) ast.Visitor {
 		w.checkGenDecl(node)
 	case *ast.StructType:
 		w.checkStruct(node)
+	case *ast.TypeSpec:
+		w.checkTypeSpec(node)
 	default:
 		return w
 	}
@@ -96,6 +98,20 @@ func (w *walker) checkFuncType(node *ast.FuncType) {
 	if w.an.Settings.FuncReturnValues {
 		checkFieldList(w.pass, node.Results, fieldListFuncResults)
 	}
+
+	if w.an.Settings.TypeParams {
+		checkFieldList(w.pass, node.TypeParams, fieldListTypeParams)
+	}
+}
+
+// checkTypeSpec reports a diagnostic when a generic type declaration's type parameter list carries more than
+// one identifier per constraint (e.g. 'type S[T, U any] struct{...}' or 'type I[T, U any] interface{...}').
+func (w *walker) checkTypeSpec(node *ast.TypeSpec) {
+	if !w.an.Settings.TypeParams || node.TypeParams == nil {
+		return
+	}
+
+	checkFieldList(w.pass, node.TypeParams, fieldListTypeParams)
 }
 
 func (w *walker) checkGenDecl(node *ast.GenDecl) {

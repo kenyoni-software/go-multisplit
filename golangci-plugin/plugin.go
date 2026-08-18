@@ -47,6 +47,8 @@ func (s *Settings) toMultiSplitSettings() (multisplit.Settings, error) {
 				cfg.ShortVarDecl = true
 			case "struct-fields":
 				cfg.StructFields = true
+			case "type-params":
+				cfg.TypeParams = true
 			case "var-decl-func":
 				cfg.VarDeclFunc = true
 			case "var-decl-pkg":

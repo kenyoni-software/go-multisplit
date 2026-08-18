@@ -28,6 +28,8 @@ type Settings struct {
 	ShortVarDecl bool
 	// StructFields checks multiple struct fields,
 	StructFields bool
+	// TypeParams checks multiple generic type parameters on functions, structs and interfaces,
+	TypeParams bool
 	// VarDeclFunc checks multiple var declarations at function scope,
 	VarDeclFunc bool
 	// VarDeclFuncToBlock rewrites typed function-scope var declarations as a block.
@@ -60,6 +62,7 @@ func DefaultSettings() Settings {
 		FuncReturnValues:       true,
 		ShortVarDecl:           false,
 		StructFields:           true,
+		TypeParams:             true,
 		VarDeclFunc:            false,
 		VarDeclFuncToBlock:     false,
 		VarDeclPkg:             true,
@@ -81,6 +84,7 @@ func (s Settings) allDisabled() bool {
 		!s.FuncReturnValues &&
 		!s.ShortVarDecl &&
 		!s.StructFields &&
+		!s.TypeParams &&
 		!s.VarDeclFunc &&
 		!s.VarDeclPkg &&
 		!s.VarDeclInitFunc &&
@@ -122,6 +126,7 @@ func registerFlags(fSet *flag.FlagSet, cfg *Settings) {
 		cfg.FuncReturnValues = true
 		cfg.ShortVarDecl = true
 		cfg.StructFields = true
+		cfg.TypeParams = true
 		cfg.VarDeclFunc = true
 		cfg.VarDeclInitFunc = true
 		cfg.VarDeclInitPkg = true
@@ -138,11 +143,13 @@ func registerFlags(fSet *flag.FlagSet, cfg *Settings) {
 		"split multiple const declarations in package scope (e.g. 'const a, b = 1, 2')")
 	fSet.BoolVar(&cfg.ConstDeclPkgToBlock, "const-decl-pkg-to-block", cfg.ConstDeclPkgToBlock,
 		"when splitting, use a block instead of separate 'const' lines")
-	fSet.BoolVar(&cfg.FuncParams, "func-params", cfg.FuncParams, "split multiple function parameters (e.g. 'func f(a, b int)' → 'func f(a int, b int)')")
+	fSet.BoolVar(&cfg.FuncParams, "func-params", cfg.FuncParams, "split multiple function parameters (e.g. 'func f(a, b int)'")
 	fSet.BoolVar(&cfg.FuncReturnValues, "func-return-values", cfg.FuncReturnValues,
-		"split multiple named function return values (e.g. 'func f() (a, b int)' → 'func f() (a int, b int)')")
+		"split multiple named function return values (e.g. 'func f() (a, b int)'")
 	fSet.BoolVar(&cfg.ShortVarDecl, "short-var-decl", cfg.ShortVarDecl, "split multiple short variable declarations (e.g. 'a, b := 1, 2')")
 	fSet.BoolVar(&cfg.StructFields, "struct-fields", cfg.StructFields, "split multiple struct fields (e.g. 'type S struct { a, b int }')")
+	fSet.BoolVar(&cfg.TypeParams, "type-params", cfg.TypeParams,
+		"split multiple generic type parameters (e.g. 'func f[T, U any](...)', 'type S[T, U any] struct{...}', 'type I[T, U any] interface{...}')")
 	fSet.BoolVar(&cfg.VarDeclFunc, "var-decl-func", cfg.VarDeclFunc, "split multiple var declarations in function scope (e.g. 'var a, b int')")
 	fSet.BoolVar(&cfg.VarDeclFuncToBlock, "var-decl-func-to-block", cfg.VarDeclFuncToBlock, blockVarDesc)
 	fSet.BoolVar(&cfg.VarDeclPkg, "var-decl-pkg", cfg.VarDeclPkg, "split multiple var declarations in package scope (e.g. 'var a, b int')")

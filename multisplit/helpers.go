@@ -51,6 +51,8 @@ const (
 	fieldListFuncParams fieldListType = iota
 	fieldListFuncResults
 	fieldListStructFields
+	// fieldListTypeParams covers generic type parameters.
+	fieldListTypeParams
 )
 
 // checkFieldList reports a diagnostic for every *ast.Field in the list that carries more than one name (e.g. 'a, b int' in a struct or function signature).
@@ -67,6 +69,8 @@ func checkFieldList(pass *analysis.Pass, flist *ast.FieldList, flt fieldListType
 		msgFmt = "function return values with multiple identifiers (%s) should be split into individual return values"
 	case fieldListStructFields:
 		msgFmt = "struct field declaration with multiple identifiers (%s) should be split into individual fields"
+	case fieldListTypeParams:
+		msgFmt = "generic type parameters with multiple identifiers (%s) should be split into individual parameters"
 	default:
 		return
 	}

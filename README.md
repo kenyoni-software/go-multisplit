@@ -154,6 +154,21 @@ All **\*-to-block** options rewrite declarations into a grouped block. Grouped b
     }
     ```
 
+* **`type-params`** (default: `true`)
+    Split type parameter declarations with multiple identifiers into individual type parameters.
+
+    Before:
+
+    ```go
+    func f[T, U any]() {}
+    ```
+
+    After:
+
+    ```go
+    func f[T any, U any]() {}
+    ```
+
 * **`var-decl-func`** (default: `false`)
     Split `var` declarations with multiple identifiers inside function bodies into individual declarations.  
     If **`var-decl-func-to-block`** (default: `false`) is enabled, the individual declarations are placed inside a `var` block.
@@ -292,7 +307,7 @@ version: main
 plugins:
   - module: "github.com/kenyoni-software/go-multisplit"
     import: "github.com/kenyoni-software/go-multisplit/golangci-plugin"
-    version: v1.1.3
+    version: v1.2.0
 ```
 
 Add MultiSplit to the `.golangci.yml` configuration:
@@ -308,7 +323,7 @@ linters:
         description: "Detects when multiple identifiers are declared, assigned or listed together and suggests splitting them into multiple lines for improved readability."
         settings:
           # The set of rules to apply. If empty, the default rules will be applied.
-          # Default: const-decl-pkg, func-params, func-return-values, struct-fields, var-decl-init-pkg, var-decl-pkg
+          # Default: const-decl-pkg, func-params, func-return-values, struct-fields, type-params, var-decl-init-pkg, var-decl-pkg
           rules:
             - assign
             - var-decl-func
