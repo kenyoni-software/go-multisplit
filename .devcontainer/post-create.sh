@@ -1,6 +1,12 @@
 #!/bin/bash
 set -ex
 
+go install golang.org/dl/go1.27.0@latest
+go1.27.0 download
+sudo rm -rf /usr/local/go
+sudo ln -s /home/vscode/sdk/go1.27.0 /usr/local/go
+go version
+
 # download go modules
 go mod download
 cd golangci-plugin

@@ -1,12 +1,12 @@
 module github.com/kenyoni-software/go-multisplit/golangci-plugin
 
-go 1.25.0
+go 1.26.0
 
 require (
 	github.com/golangci/plugin-module-register v0.1.2
-	github.com/kenyoni-software/go-multisplit v1.1.3
+	github.com/kenyoni-software/go-multisplit v1.2.1
 	github.com/stretchr/testify v1.11.1
-	golang.org/x/tools v0.43.0
+	golang.org/x/tools v0.49.0
 )
 
 require (

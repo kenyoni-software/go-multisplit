@@ -9,6 +9,10 @@ type S[T, U any] struct { // want `generic type parameters with multiple identif
 	field2 U
 }
 
+func (s S[T, U]) Method[X, Y int](lhs X, rhs Y) U { // want `generic type parameters with multiple identifiers \(X, Y\) should be split into individual parameters`
+	return s.field2
+}
+
 type I[T, U any] interface { // want `generic type parameters with multiple identifiers \(T, U\) should be split into individual parameters`
 	Method(arg T) U
 }

@@ -1,3 +1,4 @@
+// Package plugin implements a golangci-lint plugin for the multisplit analyzer.
 package plugin
 
 import (
@@ -13,8 +14,10 @@ func init() {
 	register.Plugin("multisplit", NewMultiSplitPlugin)
 }
 
+// ErrUnknownRule is returned when an unknown rule is specified in the plugin settings.
 var ErrUnknownRule = errors.New("unknown rule")
 
+// Settings defines the configuration for the multisplit plugin.
 type Settings struct {
 	Rules                  []string `json:"rules"`
 	ConstDeclFuncToBlock   *bool    `json:"const-decl-func-to-block"`
@@ -26,6 +29,7 @@ type Settings struct {
 	VarDeclInitPkgToBlock  *bool    `json:"var-decl-init-pkg-to-block"`
 }
 
+//nolint:gocyclo
 func (s *Settings) toMultiSplitSettings() (multisplit.Settings, error) {
 	var cfg multisplit.Settings
 	if len(s.Rules) == 0 {
@@ -88,12 +92,13 @@ func (s *Settings) toMultiSplitSettings() (multisplit.Settings, error) {
 	return cfg, nil
 }
 
+// Plugin implements the golangci-lint plugin interface for the multisplit analyzer.
 type Plugin struct {
 	settings multisplit.Settings
 }
 
 // NewMultiSplitPlugin constructs a new multisplit plugin.
-func NewMultiSplitPlugin(settings any) (register.LinterPlugin, error) {
+func NewMultiSplitPlugin(settings any) (register.LinterPlugin, error) { //nolint:ireturn
 	ds, err := register.DecodeSettings[Settings](settings)
 	if err != nil {
 		return nil, err
@@ -113,11 +118,13 @@ func NewMultiSplitPlugin(settings any) (register.LinterPlugin, error) {
 func (plugin *Plugin) BuildAnalyzers() ([]*analysis.Analyzer, error) {
 	analyzer := multisplit.NewAnalyzer()
 	analyzer.Settings = plugin.settings
+
 	return []*analysis.Analyzer{
 		analyzer.Analyzer,
 	}, nil
 }
 
+// GetLoadMode returns the load mode.
 func (plugin *Plugin) GetLoadMode() string {
 	return register.LoadModeSyntax
 }

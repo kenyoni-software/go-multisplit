@@ -22,12 +22,16 @@ linters:
     - exhaustruct
     # inits are required to setup global states
     - gochecknoinits
+    # replaced by gomodguard_v2
+    - gomodguard
     # naked returns are not allowed, they make the code less readable and harder to maintain
     - nakedret
     # named returns are better self documenting
     - nonamedreturns
     # gofumpt not supporting formatting tags
     - tagalign
+    # golangci-lint requires dashed tags
+    - tagliatelle
     # outdated use wsl_v5
     - wsl
   settings:
@@ -55,6 +59,8 @@ linters:
       min-complexity: 15
     gocyclo:
       min-complexity: 15
+    gomoddirectives:
+      replace-local: true
     lll:
       line-length: 160
     revive:
@@ -81,6 +87,9 @@ linters:
         - name: unused-parameter
           arguments:
             - allow-regex: "^_.*"
+        # unused-receiver are fine and avoid using the receiver name as a variable name
+        - name: unused-receiver
+          disabled: true
     wsl_v5:
       # most is disabled because the developer can be trusted enough to group the code properly
       disable:

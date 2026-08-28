@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestPluginExample(t *testing.T) {
+func TestPluginExample(t *testing.T) { //nolint:paralleltest
 	newPlugin, err := register.GetPlugin("multisplit")
 	require.NoError(t, err)
 

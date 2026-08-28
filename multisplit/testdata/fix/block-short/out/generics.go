@@ -9,6 +9,10 @@ type S[T any, U any] struct { // comment
 	field2 U
 }
 
+func (s S[T, U]) Method[X int, Y int](lhs X, rhs Y) U { // comment
+	return s.field2
+}
+
 type I[T any, U any] interface { // comment
 	Method(arg T) U
 }
