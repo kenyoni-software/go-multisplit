@@ -1,6 +1,6 @@
 # Go MultiSplit
 
-![maintained](https://img.shields.io/badge/maintained-yes-brightgreen.svg)
+![maintained](https://img.shields.io/badge/Status-Maintained-brightgreen.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/kenyoni-software/go-multisplit/blob/main/LICENSE.md)
 ![Programming Language](https://img.shields.io/badge/language-Go-orange.svg)
 
@@ -9,6 +9,7 @@ Go MultiSplit is a `go/analysis`-based linter that detects when multiple identif
 ## Options
 
 No fix will be suggested
+
 - if a declaration or statement has a comment attached, to avoid changing the intent of the comment
 - if a multiple declaration or statement uses an anonymous struct type, to avoid duplicate code
 
@@ -307,7 +308,7 @@ version: main
 plugins:
   - module: "github.com/kenyoni-software/go-multisplit"
     import: "github.com/kenyoni-software/go-multisplit/golangci-plugin"
-    version: v1.3.0
+    version: v1.3.1
 ```
 
 Add MultiSplit to the `.golangci.yml` configuration:
