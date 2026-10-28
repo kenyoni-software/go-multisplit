@@ -1,5 +1,14 @@
 package multisplit
 
+type ash struct {
+	v1 int
+	v2 int
+}
+
+func (_ *ash) value() int {
+	return 0
+}
+
 func assign() {
 	var (
 		v1 int
@@ -8,6 +17,10 @@ func assign() {
 		v4 struct{}
 		v5 StructT
 	)
+
+	as := ash{}
+	as.v1 = 42
+	as.v2 = as.value()
 
 	v1 = 1
 	v2 = value()

@@ -3,6 +3,7 @@ package multisplit
 import (
 	"fmt"
 	"go/ast"
+	"go/format"
 	"go/token"
 	"strings"
 
@@ -115,7 +116,7 @@ func reportAssignStmt(pass *analysis.Pass, stmt *ast.AssignStmt, commentMap ast.
 	diag := analysis.Diagnostic{ //nolint:exhaustruct_v5
 		Pos:     stmt.Pos(),
 		End:     stmt.End(),
-		Message: fmt.Sprintf(msgFmt, joinLHSExprs(stmt.Lhs)),
+		Message: fmt.Sprintf(msgFmt, joinLHSExprs(pass.Fset, stmt.Lhs)),
 	}
 
 	// only create a fix if we do not have a comment, so we may not change the intent
@@ -152,15 +153,17 @@ func joinIdents(idents []*ast.Ident) string {
 }
 
 // joinLHSExprs returns a comma-separated string of LHS expression source names.
-// Non-identifier expressions (e.g. index expressions like 'a[idx]') are represented as "_" since they have no simple name.
-func joinLHSExprs(exprs []ast.Expr) string {
+func joinLHSExprs(fset *token.FileSet, exprs []ast.Expr) string {
 	parts := make([]string, len(exprs))
 	for idx, expr := range exprs {
-		if ident, ok := expr.(*ast.Ident); ok {
-			parts[idx] = ident.Name
-		} else {
+		var source strings.Builder
+		err := format.Node(&source, fset, expr)
+		if err != nil {
 			parts[idx] = "_"
+
+			continue
 		}
+		parts[idx] = source.String()
 	}
 
 	return strings.Join(parts, ", ")
